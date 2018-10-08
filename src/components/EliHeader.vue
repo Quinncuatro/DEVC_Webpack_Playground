@@ -6,7 +6,7 @@
           <tbody>
             <tr>
               <td class="seal hidden-xs">
-                <img src="../assets/ct_seal.png">
+                <img src="https://picsum.photos/110/110?image=0">
               </td>
               <td class="titles">
                 <h3 class="districtTitle">Workplace of America</h3>
