@@ -1,0 +1,30 @@
+version: "3.5"
+services:
+  db-eli:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    restart: always
+    container_name: eli-db
+    volumes:
+      - eli_dbdata:/var/lib/mysql
+    networks:
+      - eli-net
+
+  lucee-eli:
+    build:
+      context: ./lucee
+      dockerfile: Dockerfile
+    restart: always
+    container_name: eli-lucee
+    ports:
+      - "7777:8888" # for multiple instances change 32770 to another port number
+    networks:
+      - eli-net
+  
+volumes:
+  eli_dbdata:
+
+networks:
+  eli-net:
+    driver: bridge
