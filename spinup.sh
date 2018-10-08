@@ -5,8 +5,8 @@ do
   case "$1" in
     --help | -h)
       printf "USAGE: ./spinup.sh [OPTION]... \n"
-      printf "Tears down existing JDash infrastructure: Containers, Images, Network \n"
-      printf "Then builds JDash back up from scratch. \n\n"
+      printf "Tears down existing ELI infrastructure: Containers, Images, Network \n"
+      printf "Then builds ELI back up from scratch. \n\n"
       printf "Optional arguments: \n"
       printf "  -d, --dev         Tears down and rebuilds, but preserves the database\n"
       printf "                        volume and bind mounts ./lucee/code/ to /var/www/\n"
@@ -92,7 +92,7 @@ do
       docker-compose build --no-cache
       echo "-----------------------"
 
-      # Create jdash-net bridge network for containers to communicate
+      # Create eli-net bridge network for containers to communicate
       echo "Creating eli-net- bridge network"
       docker network create --driver bridge eli-net
       echo "-----------------------"
@@ -102,8 +102,8 @@ do
       docker run -d -p 127.0.0.1:7777:8888 --restart always --name eli-lucee --mount type=bind,source=$(pwd)/lucee/code,target=/var/www --network eli-net devc_webpack_playground_lucee-eli:latest
       echo "-----------------------"
 
-      # Spin up jdash-mysql-db container
-      echo "Spinning up jdash-mysql-db container"
+      # Spin up eli-mysql-db container
+      echo "Spinning up eli-mysql-db container"
       docker run -d -p 127.0.0.1:3305:3306 --restart always --name eli-db -v eli_dbdata:/var/lib/mysql --network eli-net devc_webpack_playground_db-eli:latest
       echo "-----------------------"
 
@@ -188,9 +188,9 @@ do
         echo "-----------------------"
       fi
 
-      # If jdash-net network exists, remove it.
-      existing_jdashnet_network=`docker network ls | grep eli-net | wc -l`
-      if [ $existing_jdashnet_network -gt "0" ]
+      # If eli-net network exists, remove it.
+      existing_elinet_network=`docker network ls | grep eli-net | wc -l`
+      if [ $existing_elinet_network -gt "0" ]
       then
         echo "Network eli-net exists."
         echo "Removing network now."
@@ -206,8 +206,8 @@ do
 done
 
 printf "USAGE: ./spinup.sh [OPTION]... \n"
-printf "Tears down existing JDash infrastructure: Containers, Images, Network \n"
-printf "Then builds JDash back up from scratch. \n\n"
+printf "Tears down existing ELI infrastructure: Containers, Images, Network \n"
+printf "Then builds ELI back up from scratch. \n\n"
 printf "Optional arguments: \n"
 printf "  -d, --dev         Tears down and rebuilds, but preserves the database\n"
 printf "                        volume and bind mounts ./lucee/code/ to /var/www/\n"
