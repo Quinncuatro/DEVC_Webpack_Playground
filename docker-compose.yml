@@ -18,12 +18,12 @@ services:
     restart: always
     container_name: eli-lucee
     ports:
-      - "7777:8888" # for multiple instances change 32770 to another port number
+      - "8888:8888" # for multiple instances change 32770 to another port number
     networks:
       - eli-net
-  
+
 volumes:
-  eli_dbdata:
+  ? eli_dbdata
 
 networks:
   eli-net:
