@@ -1,21 +1,11 @@
-# vueWebpackTest2
+# USE
 
-## Project setup
-```
-npm install
-```
+`./spinup.sh -d`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# VISIT
 
-### Compiles and minifies for production
-```
-npm run build
-```
+`localhost:7777`
 
-### Lints and fixes files
-```
-npm run lint
-```
+# CLEANUP
+
+`./spinup.sh -t`
